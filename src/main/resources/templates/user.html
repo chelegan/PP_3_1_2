@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <style>
+        form {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        p {
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Добавляем рамку */
+            padding: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+<form th:method="POST" th:action="@{/user}" th:object="${user}">
+
+    <input hidden="hidden" type="number" th:field="*{id}" id="id">
+
+    <label for="UserName"> Username: </label>
+    <p id="UserName" th:text="*{username}"></p>
+    <br/>
+
+    <label for="Password"> Password: </label>
+    <p id="Password" th:text="*{password}"></p>
+    <br/>
+
+    <label for="FirstName"> Name: </label>
+    <p id="FirstName" th:text="*{firstName}"></p>
+    <br/>
+
+    <label for="LastName"> Surname: </label>
+    <p id="LastName" th:text="*{lastName}"></p>
+    <br/>
+
+    <label for="Age"> Age: </label>
+    <p id="Age" th:text="*{age}"></p>
+    <br/>
+    <br/>
+
+    <button type="button">
+        <a href="/logout">Logout</a>
+    </button>
+
+</form>
+</body>
+</html>

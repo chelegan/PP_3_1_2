@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update User</title>
+  <style>
+    form {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/update}" th:object="${user}">
+
+  <input hidden="hidden" type="number" th:field="*{id}" id="id">
+
+  <label for="userName"> Username: </label>
+  <input type="text" th:field="*{username}" id="userName"/>
+  <br/>
+  <br/>
+
+  <label for="password"> Password: </label>
+  <input type="text" th:field="*{password}" id="password"/>
+  <br/>
+  <br/>
+
+  <label for="roleAdmin"> Admin: </label>
+  <input type="checkbox" name="role" th:value="ROLE_ADMIN" id="roleAdmin" />
+  <br/>
+  <br/>
+
+  <label for="roleUser"> User: </label>
+  <input type="checkbox" name="role" th:value="ROLE_USER" id="roleUser" th:checked="${!user.roles.isEmpty()}" />
+  <br/>
+  <br/>
+
+  <label for="newFirstName"> Name: </label>
+  <input type="text" th:field="*{firstName}" id="newFirstName"/>
+  <br/>
+  <br/>
+
+  <label for="newLastName"> Surname: </label>
+  <input type="text" th:field="*{lastName}" id="newLastName"/>
+  <br/>
+  <br/>
+
+  <label for="newAge"> Age: </label>
+  <input type="text" th:field="*{age}" id="newAge"/>
+  <br/>
+  <br/>
+
+
+  <input type="submit" value="Update user"/>
+  <br/>
+  <br/>
+
+  <button type="button">
+    <a href="/logout">Logout</a>
+  </button>
+</form>
+
+<script th:inline="javascript">
+
+  const roleAdminCheckbox = document.getElementById('roleAdmin');
+  const roleUserCheckbox = document.getElementById('roleUser');
+
+  function setOnlyOneCheckbox() {
+    if (roleAdminCheckbox.checked) {
+      roleUserCheckbox.checked = false;
+    } else {
+      roleAdminCheckbox.checked = false;
+    }
+  }
+
+  roleAdminCheckbox.addEventListener('change', setOnlyOneCheckbox);
+  roleUserCheckbox.addEventListener('change', setOnlyOneCheckbox);
+</script>
+
+</body>
+</html>
